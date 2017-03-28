@@ -14,7 +14,6 @@ class AUCComputer extends Computer{
   var model:LogisticRegressionModel = null
 
   override def compute(trainRDD: RDD[LabeledPoint], testRDD: RDD[LabeledPoint]): Double = {
-    println("")
     model = new LogisticRegressionWithLBFGS().setNumClasses(10).run(trainRDD)
     val predictionAndLabels = testRDD.map { case LabeledPoint(label, features) =>
       val prediction = model.predict(features)
