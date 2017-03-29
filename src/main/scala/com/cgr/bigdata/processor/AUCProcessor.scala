@@ -4,10 +4,6 @@ import com.cgr.bigdata.computer.Computer
 import com.cgr.bigdata.converter.Convertter
 import com.cgr.bigdata.datacutter.DataCutter
 import com.cgr.bigdata.dataloader.DataLoader
-import com.jje.bigdata.computer.Computer
-import com.jje.bigdata.converter.Convertter
-import com.jje.bigdata.datacutter.DataCutter
-import com.jje.bigdata.dataloader.{DataLoader, HiveDataLoader}
 import org.apache.spark.sql.SparkSession
 
 /**

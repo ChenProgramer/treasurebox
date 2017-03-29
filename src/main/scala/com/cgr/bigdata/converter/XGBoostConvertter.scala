@@ -26,18 +26,18 @@ class XGBoostConvertter() extends Convertter with java.io.Serializable{
 
   var leaves:List[List[Double]] = null
 
-  def init(spark:SparkSession,rdd: RDD[LabeledPoint]):Unit={
-    val dataFrame = convertRDDToDataFrame(spark,rdd)
-    model = XGBoost.trainWithDataFrame(dataFrame, paramMap,numRound, numWorkers, useExternalMemory = true)
-    train(spark,rdd)
-  }
-
   override def convertter(spark:SparkSession,trainRDD: RDD[LabeledPoint],testRDD: RDD[LabeledPoint]): (RDD[LabeledPoint],RDD[LabeledPoint]) = {
     init(spark,trainRDD)
     val dataFrame = convertRDDToDataFrame(spark,testRDD)
     val prediction = model.setExternalMemory(true).transformLeaf(dataFrame)
     this.testRDD = getleaves(prediction)
     (trainRDD,testRDD)
+  }
+
+  def init(spark:SparkSession,rdd: RDD[LabeledPoint]):Unit={
+    val dataFrame = convertRDDToDataFrame(spark,rdd)
+    model = XGBoost.trainWithDataFrame(dataFrame, paramMap,numRound, numWorkers, useExternalMemory = true)
+    train(spark,rdd)
   }
 
   def convertRDDToDataFrame(spark:SparkSession,rdd: RDD[LabeledPoint]): DataFrame = {
