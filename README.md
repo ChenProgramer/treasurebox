@@ -12,6 +12,7 @@
 4 执行example中的示例main方法
 ### 处理流程
 本框架的总体流程如下图所示
+
 ![](http://i2.muimg.com/567571/632207be0b9e980f.png)
 1 DataLoader负责原始数据集的载入工作，因为这部分工作很多重复性劳动，所以可以抽离出来。目前共封装了3个数据源：hbase,hive,redis
 2 DataCleaner负责数据清洗，目前是以组件的形式封装在DataLoader中，主要以BigDataVO的数据传输类进行约束
