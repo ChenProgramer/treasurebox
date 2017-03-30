@@ -16,5 +16,6 @@ class BigDataVO extends java.io.Serializable{
   @BeanProperty var integers:List[Integer] = List[Integer]()
 
   @BeanProperty var arrays:List[Array[Double]] = List[Array[Double]]()
+
 }
 
