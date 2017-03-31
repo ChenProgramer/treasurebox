@@ -37,8 +37,9 @@ class SampleDataCutter(sample:Double,ratio:Double) extends DataCutter{
   def cutData_2(rdd:RDD[LabeledPoint]):(RDD[LabeledPoint],RDD[LabeledPoint])={
     val positiveData = rdd.filter(x => x.label == 1.0)
     val negativeData = rdd.filter(x => x.label == 0.0)
+    val m = (positiveData.count() * ( 1 / ratio) ) / negativeData.count()
     val positiveVO = cutData_1(positiveData)
-    val negativeVO = cutData_1(negativeData)
+    val negativeVO = cutData_1(negativeData.sample(false,m))
     (positiveVO._1.union(negativeVO._1),positiveVO._2.union(negativeVO._2))
   }
 

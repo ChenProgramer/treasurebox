@@ -9,7 +9,7 @@ import org.apache.spark.rdd.RDD
 /**
   * Created by guorui.chen on 2017/3/28.
   */
-class AUCComputer extends Computer with java.io.Serializable{
+class LogicAUCComputer extends Computer with java.io.Serializable{
 
   var model:LogisticRegressionModel = null
 
