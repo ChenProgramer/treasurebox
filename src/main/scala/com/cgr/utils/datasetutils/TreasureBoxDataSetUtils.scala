@@ -42,7 +42,8 @@ object TreasureBoxDataSetUtils {
   }
 
   //根据数据集计算阈值
-  def computeThreshold(rdd:RDD[Double],alpha:Double):Double={
+  def computeThreshold[A](rdd:RDD[A],alpha:Double):A={
+    //check
     val sortRDD = rdd.sortBy(x => x).zipWithIndex()
     val count = sortRDD.count()
     val rank = (count * alpha).toLong
