@@ -33,26 +33,30 @@ object TreasureBoxDataSetUtils {
     Vectors.dense(a.toArray)
   }
 
+  def computeMin[A](rdd:RDD[A]):A={
+    val sortRDD = rdd.sortBy(f => f.toString.toDouble)
+    sortRDD.collect().apply(0).asInstanceOf[A]
+  }
+
 
   //根据数据集计算最大值
-  def computeMax(rdd:RDD[Double],alpha:Double):Double={
-    val sortRDD = rdd.sortBy(f => f).zipWithIndex()
+  def computeMax[A](rdd:RDD[A]):A={
+    val sortRDD = rdd.sortBy(f => f.toString.toDouble).zipWithIndex()
     val count = sortRDD.count()
-    sortRDD.filter(x => x._2 + 1L == count).collect().apply(0)._1
+    sortRDD.filter(x => x._2 + 1L == count).collect().apply(0)._1.asInstanceOf[A]
   }
 
   //根据数据集计算阈值
-  def computeThreshold(rdd:RDD[Double],alpha:Double):Double={
-    //check
-    val sortRDD = rdd.sortBy(x => x).zipWithIndex()
+  def computeThreshold[A](rdd:RDD[A],alpha:Double):A={
+    val sortRDD = rdd.sortBy(x => x.toString.toDouble).zipWithIndex()
     val count = sortRDD.count()
     val rank = (count * alpha).toLong
-    sortRDD.filter(x => x._2 + 1L == rank).collect().apply(0)._1
+    sortRDD.filter(x => x._2 + 1L == rank).collect().apply(0)._1.asInstanceOf[A]
   }
 
   //将RDD存储到hive里面
   def dataStorageHive[A](rdd:RDD[A],fields:Array[String],table:String):Unit={
-
+    rdd.foreach(println)
   }
 
   //将RDD存储到hive里面

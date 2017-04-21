@@ -15,6 +15,7 @@ class LogicAUCComputer extends Computer with java.io.Serializable{
 
   override def compute(trainRDD: RDD[LabeledPoint], testRDD: RDD[LabeledPoint]): Double = {
     model = new LogisticRegressionWithLBFGS().setNumClasses(10).run(trainRDD)
+    model.clearThreshold()
     val predictionAndLabels = testRDD.map { case LabeledPoint(label, features) =>
       val prediction = model.predict(features)
       (prediction, label)

@@ -45,9 +45,11 @@ class SampleDataCutter(sample:Double,ratio:Double) extends DataCutter{
 
   /**
     * 检查正负样本数据集比例
+    * 检查正负样本数据集比例
     * @return
     */
   def checkSampleNum(rdd:RDD[LabeledPoint]):RDD[LabeledPoint]={
+    val postti = rdd.map(x => 1.0).reduce((x,y) => x+ y)
     val positiveData = rdd.filter(x => x.label == 1.0)
     val negativeData = rdd.filter(x => x.label == 0.0)
     val positiveCount = positiveData.count()

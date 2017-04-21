@@ -20,6 +20,7 @@ class CommonDataMonitor extends DataMonitor{
 
   override def monitor(rdd:RDD[(Double,Double)],needCount:Boolean):Unit={
     require(spark,rdd)
+    println("------------start CommonDataMonitor , taskUUID is " + taskUUID + " ------------")
     TreasureBoxStorageUtils.aucMonitorStorage(spark,rdd,taskUUID)
     if(needCount != null && needCount){
       val fieldAndValue:MutableMap[String,String] = MutableMap[String,String]()
