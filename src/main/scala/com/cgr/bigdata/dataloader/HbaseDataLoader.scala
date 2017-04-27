@@ -7,7 +7,7 @@ import org.apache.spark.sql.SparkSession
 /**
   * Created by guorui.chen on 2017/3/27.
   */
-class HbaseDataLoader(conditionMap:Map[String,String]) extends DataLoader{
+class HbaseDataLoader(conditionMap:Map[String,String]) extends AUCDataLoader{
 
   override def initDataSet(spark: SparkSession): RDD[LabeledPoint] = {
     null

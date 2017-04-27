@@ -3,13 +3,13 @@ package com.cgr.bigdata.processor
 import com.cgr.bigdata.computer.Computer
 import com.cgr.bigdata.converter.Convertter
 import com.cgr.bigdata.datacutter.DataCutter
-import com.cgr.bigdata.dataloader.DataLoader
+import com.cgr.bigdata.dataloader.AUCDataLoader
 import org.apache.spark.sql.SparkSession
 
 /**
   * Created by guorui.chen on 2017/3/27.
   */
-class AUCProcessor(dataLoader:DataLoader,dataCutter:DataCutter,convertter:Convertter,computer:Computer) {
+class AUCProcessor(dataLoader:AUCDataLoader,dataCutter:DataCutter,convertter:Convertter,computer:Computer) {
 
   def computeAUCValue(): Unit={
 

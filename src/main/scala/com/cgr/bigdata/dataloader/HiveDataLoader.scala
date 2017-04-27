@@ -12,7 +12,7 @@ import scala.beans.BeanProperty
 /**
   * Created by guorui.chen on 2017/3/27.
   */
-class HiveDataLoader(tableName:String,contidionMap:Map[String,String])  extends DataLoader with java.io.Serializable{
+class HiveDataLoader(tableName:String,contidionMap:Map[String,String])  extends AUCDataLoader with java.io.Serializable{
 
   @BeanProperty var dataCleaner:DataCleaner = null
 

@@ -7,7 +7,7 @@ import redis.clients.jedis.Jedis
 /**
   * Created by guorui.chen on 2017/3/29.
   */
-class RedisDataLoader extends DataLoader{
+class RedisDataLoader extends AUCDataLoader{
 
   var jedis:Jedis = null
 

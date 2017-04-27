@@ -17,17 +17,17 @@ trait SparkWorker {
     .getOrCreate()
 
   implicit val sc = spark.sparkContext
-
   sc.setLogLevel("ERROR")
 
   def process()
 
-  def init(): Unit ={
-
+  def run(): Unit ={
+    process()
+    stop()
   }
 
-  def run(): Unit ={
-    process
+  def stop(): Unit ={
+    spark.stop()
   }
 
 }
