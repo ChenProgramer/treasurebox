@@ -5,7 +5,7 @@ import org.apache.spark.sql.SparkSession
 /**
   * Created by guorui.chen on 2017/4/21.
   */
-trait SparkWorker {
+trait SparkWorker extends java.io.Serializable{
 
   val warehouseLocation = "file:${system:user.dir}/spark-warehouse"
 

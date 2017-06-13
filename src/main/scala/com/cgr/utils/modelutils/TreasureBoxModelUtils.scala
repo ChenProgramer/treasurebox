@@ -10,12 +10,12 @@ import org.apache.spark.sql.SparkSession
   */
 object TreasureBoxModelUtils {
 
-  def deleteTargetFile(savePath:String,spark:SparkSession):Unit={
+  def deleteTargetFile(savePath:String,spark:SparkSession,zookeeperUrl:String):Unit={
     val file1 = savePath + "data";
     val file2 = savePath + "metadata";
     val configuration = HBaseConfiguration.create();
     configuration.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer");
-    configuration.set("hbase.zookeeper.quorum", "ip-172-21-121-251.cn-north-1.compute.internal");
+    configuration.set("hbase.zookeeper.quorum", zookeeperUrl);
     val hdfs = FileSystem.get(configuration)
     var path = new Path(file1)
     if (hdfs.exists(path)){
@@ -27,8 +27,8 @@ object TreasureBoxModelUtils {
     }
   }
 
-  def logicModelSave(model:LogisticRegressionModel,savePath:String,spark:SparkSession):Unit = {
-    deleteTargetFile(savePath,spark)
+  def logicModelSave(model:LogisticRegressionModel,savePath:String,spark:SparkSession,zookeeperUrl:String):Unit = {
+    deleteTargetFile(savePath,spark,zookeeperUrl)
     model.save(spark.sparkContext,savePath)
   }
 
